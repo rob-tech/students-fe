@@ -1,0 +1,37 @@
+#bt-styleOne {
+    text-align: center;
+    font-size: 0.8em !important;
+    background: #fff;
+    color: #7386d5;
+    width: 55px;
+    height: 31px;
+    border-radius: 4px !important;
+    border-color: #b8b7ad;
+  }
+
+  #bt-styleTwo {
+    text-align: center;
+    font-size: 0.8em !important;
+    background: #fff;
+    color: #7386d5;
+    width: 40px;
+    height: 31px;
+    border-radius: 4px !important;
+    border-color: #b8b7ad;
+    margin-right: 8px
+  }
+
+  .btn-sm{
+      display: inline-block;
+      margin-left: 200px !important;
+  }
+
+  .list .list-group-item{
+      border: none
+  }
+
+  /* .btn{
+    font-size: 0.7em !important;
+    height: 30px; 
+    text-align: center !important
+  } */
