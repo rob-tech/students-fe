@@ -9,6 +9,12 @@ class StudentForm extends Component {
       super(params);
   
       this.state = {
+
+          Name: "",
+          Surname: "",
+          Email: "",
+          DOB: null,
+
         isLoading: false,
         errMess: null,
         students: [],
@@ -29,6 +35,12 @@ class StudentForm extends Component {
       });
    
       try {
+        student = {
+          Name: this.state.Name,
+          Surname: this.state.Surname,
+          Email: this.state.Email,
+          DOB: this.state.DOB
+        }
         var response = await fetch(
             "http://localhost:3000/students",
           {
@@ -84,11 +96,11 @@ class StudentForm extends Component {
         <Container>
           <h3>Add Student</h3>
          <Form >
-          <input type="text" value={this.state.students.Name} onChange={(val) => this.setState({ Name: val.currentTarget.value } )}/>
-          <input type="text" value={this.state.students.Surname} onChange={(val) => this.setState({ Surname: val.currentTarget.value } )}/>
-          <input type="email" value={this.state.students.Email} onChange={(val) => this.setState({ Email: val.currentTarget.value } )}/>
-          <input type="date" value={this.state.students.DOB} onChange={(val) => this.setState({ DOB: val.currentTarget.value } )}/>
-          <button style={{}} type='submit' onSubmit={student => this.handleSubmit(this.state.students)}/>
+          <input type="text" value={this.state.Name} onChange={(val) => this.setState({ Name: val.currentTarget.value } )}/>
+          <input type="text" value={this.state.Surname} onChange={(val) => this.setState({ Surname: val.currentTarget.value } )}/>
+          <input type="email" value={this.state.Email} onChange={(val) => this.setState({ Email: val.currentTarget.value } )}/>
+          <input type="date" value={this.state.DOB} onChange={(val) => this.setState({ DOB: val.currentTarget.value } )}/>
+          <button style={{}} type='submit' onClick={this.handleSubmit}/>
           </Form>
          
      <hr/>
@@ -122,11 +134,11 @@ class StudentForm extends Component {
       
     }
 
-    componentDidMount = async () => {
-      var res = await fetch("http://localhost:3000/students");
-      var students = await res.json();
-      this.setState({ students: students });
-    }
+    // componentDidMount = async () => {
+    //   var res = await fetch("http://localhost:3000/students");
+    //   var students = await res.json();
+    //   this.setState({ students: students });
+    // }
 
     activateDelete  = async id => {
       console.log(id)
