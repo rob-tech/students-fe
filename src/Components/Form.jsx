@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, ListGroup, ListGroupItem, ButtonGroup, Button } from "reactstrap";
+import { Container, Form, ListGroup, ListGroupItem, ButtonGroup, Button, Alert } from "reactstrap";
 
 // const requiredValidator = val => val && val.length;
 
@@ -13,7 +13,7 @@ class StudentForm extends Component {
           Name: "",
           Surname: "",
           Email: "",
-          DOB: null,
+          DOB: "",
 
         isLoading: false,
         errMess: null,
@@ -22,12 +22,7 @@ class StudentForm extends Component {
       };
     }
   
-    //   handleChange(values) {
-    //     //console.log("CHANGE", values);
-    //   }
-    //   handleUpdate(form) {
-    //     //console.log("UPDATE", form);
-    //   }
+
     handleSubmit = async student => {
        this.setState({
         isLoading: true,
@@ -54,42 +49,43 @@ class StudentForm extends Component {
         );
 
         if (response.ok) {
-          //reset the form
+        var students = this.state.students
+        students.push(student)
           this.setState({
             errMess: null,
-            // isLoading: false,
+            isLoading: false,
           });
         } else {
           var error = await response.json();
           this.setState({
             errMess: error.message,
-            // isLoading: false
+            isLoading: false
           });
         }
       } catch (ex) {
         console.log(ex);
         this.setState({
           errMess: ex.message,
-          // isLoading: false
+          isLoading: false
         });
       }
     };
 
     render() {
-      // if (!this.state.errMess) {
-      //   this.state.errMess = true;
-      // }
-      // if (!this.state.errMess.length) {
-      //   this.state.errMess = true;
-      // } else {
-      //   return (
-      //     <Alert color="danger">
-      //       {" "}
-      //       We encountered a problem while processing your request:{" "}
-      //       {this.state.errMess}
-      //     </Alert>
-      //   );
-      // }
+      if (!this.state.errMess) {
+        this.state.errMess = true;
+      }
+      if (!this.state.errMess.length) {
+        this.state.errMess = true;
+      } else {
+        return (
+          <Alert color="danger">
+            {" "}
+            We encountered a problem while processing your request:{" "}
+            {this.state.errMess}
+          </Alert>
+        );
+      }
   
       return (
         <>
@@ -134,11 +130,11 @@ class StudentForm extends Component {
       
     }
 
-    // componentDidMount = async () => {
-    //   var res = await fetch("http://localhost:3000/students");
-    //   var students = await res.json();
-    //   this.setState({ students: students });
-    // }
+    componentDidMount = async () => {
+      var res = await fetch("http://localhost:3000/students");
+      var students = await res.json();
+      this.setState({ students: students });
+    }
 
     activateDelete  = async id => {
       console.log(id)
