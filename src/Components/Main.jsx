@@ -10,7 +10,7 @@ class Main extends Component {
       <Router>
         <Route path="/" exact component={Homepage} />
         <Route path="/students" exact component={Students} />
-        <Route path="/form" exact component={StudentForm} />
+        {/* <Route path="/form" exact component={StudentForm} /> */}
       </Router>
     );
   }
