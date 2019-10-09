@@ -53,7 +53,7 @@ class Homepage extends Component {
                             <div id="bigphoto" className="col">
                                 <img src="https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib" />
                                 <Link to= {"/students"}>
-                                <div class="centered">Students</div>
+                                <div className="centered">Students</div>
                                 </Link>
                             </div>
                             <div id="bigphoto" className="col">

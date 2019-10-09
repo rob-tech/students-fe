@@ -29,14 +29,14 @@ class Students extends Component {
                                                 <ToastHeader>
                                                     {student.Name} {student.Surname}
                                                 </ToastHeader>
-                                                {this.state.projects && this.state.projects.map(project => {
+                                                {student.projects && student.projects.map(project => {
                                                 //    if (id === project.StudentId)
                                                     return (
-                                                        <div key={project.ProjectId}>
+                                                        // <div key={project.ProjectId}>
                                                             <ToastBody>
                                                                 {project.Name}
                                                             </ToastBody>
-                                                        </div>
+                                                        // </div>
                                                     )
                                                 })}
                                             </Toast>
@@ -54,21 +54,23 @@ class Students extends Component {
     componentDidMount = async () => {
         var res = await fetch("http://localhost:3000/students");
         var students = await res.json();
+       
+        var allStudents = students
+        for(var i = 0; i < allStudents.length; i++)  {
+            allStudents[i].projects = await this.getProjects(allStudents[i].StudentId) 
+        }
         this.setState({ students: students });
-        var allStudents = this.state.students
-        allStudents.forEach (student => {
-            this.getProjects(student.StudentId) 
-        })
      
     }
 
     getProjects = async id => {
         var res = await fetch("http://localhost:3000/students/" + id + "/projects");
         var projects = await res.json();    
-        var allProjects = []
-        allProjects = allProjects.concat(projects)
-        this.setState({ projects: allProjects });
-        console.log(allProjects)
+        // var allProjects = []
+        // allProjects = allProjects.concat(projects)
+        // this.setState({ projects: allProjects });
+        // console.log(projects)
+        return projects
     }
 
 }
