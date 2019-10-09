@@ -8,7 +8,6 @@ class Students extends Component {
         ;
         this.state = {
             students: [],
-            projects: []
         };
 
     }
@@ -16,7 +15,7 @@ class Students extends Component {
     render() {
         return (
             <>
-                <Container fluid>
+               <Container fluid>
                     <h1>Students</h1>
                     <div className="p-3 my-2 rounded">
                         <Row className="col-sm-4">
@@ -24,18 +23,18 @@ class Students extends Component {
                                 var id = student.StudentId
                                 return (
                                     <Col sm="4">
-                                        <div key={student.StudentId}>                                
+                                        <div key={student.StudentId}>
                                             <Toast>
                                                 <ToastHeader>
                                                     {student.Name} {student.Surname}
                                                 </ToastHeader>
                                                 {student.projects && student.projects.map(project => {
-                                                //    if (id === project.StudentId)
+                                                    //    if (id === project.StudentId)
                                                     return (
                                                         // <div key={project.ProjectId}>
-                                                            <ToastBody>
-                                                                {project.Name}
-                                                            </ToastBody>
+                                                        <ToastBody>
+                                                            {project.Name}
+                                                        </ToastBody>
                                                         // </div>
                                                     )
                                                 })}
@@ -54,18 +53,18 @@ class Students extends Component {
     componentDidMount = async () => {
         var res = await fetch("http://localhost:3000/students");
         var students = await res.json();
-       
+
         var allStudents = students
-        for(var i = 0; i < allStudents.length; i++)  {
-            allStudents[i].projects = await this.getProjects(allStudents[i].StudentId) 
+        for (var i = 0; i < allStudents.length; i++) {
+            allStudents[i].projects = await this.getProjects(allStudents[i].StudentId)
         }
         this.setState({ students: students });
-     
+
     }
 
     getProjects = async id => {
         var res = await fetch("http://localhost:3000/students/" + id + "/projects");
-        var projects = await res.json();    
+        var projects = await res.json();
         // var allProjects = []
         // allProjects = allProjects.concat(projects)
         // this.setState({ projects: allProjects });
