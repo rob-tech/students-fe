@@ -1,12 +1,10 @@
 .hpCont  {
-  /* background: white; */
-  /* padding: 20px; */
-  /* margin-bottom: 20px; */
   align-items: center !important;
-  /* background-color: #000; */
   width: 100% !important;
   height: 750px !important; 
-  background-color: #000
+  background-color: #000;
+  padding-right: 0px !important;
+  padding-left: 23px !important;
 }
 
 #logo {
@@ -90,6 +88,7 @@ text-align: center;
 .jumbo{
     height: 350px;
     text-align: center !important;
+    padding: 10px;
 }
 
 .centered {
@@ -97,8 +96,17 @@ text-align: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    color: black
+    color: black;
+    width: 350px
   }
+
+  #heading .col-sm-12 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 10px;
+}

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './StyleSheets/form.css';
 import './StyleSheets/homepage.css';
+import './StyleSheets/Students.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from './Components/Main';
 import * as serviceWorker from './serviceWorker';

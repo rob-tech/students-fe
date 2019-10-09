@@ -1,4 +1,39 @@
-.p-3 {
-    margin-top: 20px;
-    margin-bottom: 20px;
+@media (min-width: 1200px) {
+  .studentsCont {
+    max-width: 800px;
+  }
 }
+
+.card-text {
+    margin-bottom: 5px;
+}
+
+.studentsCont {
+    text-align: center;
+    margin-top: 50px
+}
+
+.card-body {
+   height: 200px;
+   margin-bottom: 15px
+
+}
+
+.studentsCont{
+    padding: 0px;
+}
+
+
+.titleLink {
+    text-decoration: none !important;
+  }
+
+  .card-header {
+    color:  
+    #000 !important;
+  }
+
+  .card-header:hover {
+    color:  
+    #C0C0C0 !important;
+  }
