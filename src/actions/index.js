@@ -20,21 +20,4 @@
 }
 
 
-// export const handleError = () => {
-//     return async (dispatch, getState) => {
-//       //do async code here
-//       dispatch({
-//         type: "ERR_MSG", 
-//       });
-//     };
-//   };
-
-//   export const handleLoading = () => {
-//     return async (dispatch, getState) => {
-//       //do async code here
-//       dispatch({
-//         type: "LOADING",
-//       });
-//     };
-//   };
   

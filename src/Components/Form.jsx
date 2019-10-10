@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Form, ListGroup, ListGroupItem, ButtonGroup, Button, Spinner } from "reactstrap";
 import { connect } from "react-redux";
+import { handleStudents } from "../actions";
 // import { handleError} from "../actions";
 // import { handleLoading} from "../actions";
 // const requiredValidator = val => val && val.length;
@@ -16,10 +17,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({
       type: "LOADING",
     }),
-  // handleErrorThunk: () => dispatch(handleError()) ,
-  // handleLoadingThunk: () => dispatch(handleLoading()) 
+    addStudentsThunk: () => dispatch(handleStudents())
 });
-
 
 class StudentForm extends Component {
   constructor(params) {
@@ -61,7 +60,7 @@ class StudentForm extends Component {
       );
 
       if (response.ok) {
-        var students = this.state.students
+        var students = this.props.allStudents.students
         students.push(student)
       } else {
         var error = await response.json();
@@ -76,7 +75,6 @@ class StudentForm extends Component {
     this.props.setLoading()
   }, 3000);
   };
-
 
   render() {
     return (
@@ -102,7 +100,7 @@ class StudentForm extends Component {
 
           <ListGroup className="list">
             <>
-              {this.state.students.map(student => {
+              {this.props.allStudents.students.map(student => {
                 return (
                   <div key={student.StudentId}>
                     <ListGroupItem>Id: {student.StudentId}
@@ -125,10 +123,7 @@ class StudentForm extends Component {
   }
 
   componentDidMount = async () => {
-    var res = await fetch("http://localhost:3000/students");
-    var students = await res.json();
-    this.setState({ students: students });
-    console.log(this.props)
+    await this.props.addStudentsThunk()
   }
 
   activateDelete = async id => {
