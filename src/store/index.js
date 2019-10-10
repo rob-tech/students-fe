@@ -5,7 +5,7 @@ const initialState = {
   errMess: {
     message: null
   },
-  loading: {
+  isLoading: {
     loading: false
   }
 };
