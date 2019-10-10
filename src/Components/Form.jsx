@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import { Container, Form, ListGroup, ListGroupItem, ButtonGroup, Button, Spinner } from "reactstrap";
 import { connect } from "react-redux";
+// import { handleError} from "../actions";
+// import { handleLoading} from "../actions";
 // const requiredValidator = val => val && val.length;
 
-const mapStateToProps = state => {
-  return state;
-};
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   errMess: () =>
     dispatch({
       type: "ERR_MSG",
-
     }),
-  setLoading: () =>
+    setLoading: () =>
     dispatch({
       type: "LOADING",
-
-    })
+    }),
+  // handleErrorThunk: () => dispatch(handleError()) ,
+  // handleLoadingThunk: () => dispatch(handleLoading()) 
 });
+
 
 class StudentForm extends Component {
   constructor(params) {
@@ -37,7 +38,6 @@ class StudentForm extends Component {
 
   handleSubmit = async student => {
     this.props.setLoading()
-    
     this.setState({
       student: student
     });
@@ -61,7 +61,6 @@ class StudentForm extends Component {
       );
 
       if (response.ok) {
-
         var students = this.state.students
         students.push(student)
       } else {
@@ -73,32 +72,31 @@ class StudentForm extends Component {
       this.props.errMess(ex.message)
     }
 
-
+    setTimeout(() => {
     this.props.setLoading()
-
+  }, 3000);
   };
+
 
   render() {
     return (
       <>
         <Container>
           <h3>Add Student</h3>
-          <Form >
             <input type="text" value={this.state.Name} onChange={(val) => this.setState({ Name: val.currentTarget.value })} />
             <input type="text" value={this.state.Surname} onChange={(val) => this.setState({ Surname: val.currentTarget.value })} />
             <input type="email" value={this.state.Email} onChange={(val) => this.setState({ Email: val.currentTarget.value })} />
             <input type="date" value={this.state.DOB} onChange={(val) => this.setState({ DOB: val.currentTarget.value })} />
             <button style={{}} type='submit' onClick={this.handleSubmit} />
-
-            {this.props.loading && (
-              <div className="container d-flex justify-content-center my-5">
+            {this.props.isLoading.loading && (
+               <div className="container d-flex justify-content-center my-5">
                 Adding Student
-            <div>
+              <div>
                   <Spinner color="success" />
                 </div>
               </div>
             )}
-          </Form>
+    
           <hr />
           <h3>Student List</h3>
 
@@ -145,8 +143,6 @@ class StudentForm extends Component {
     console.log(id)
     await fetch("http://localhost:3000/students/" + id, { method: "PUT" });
   }
-
-
 }
 
 
