@@ -55,7 +55,7 @@ class Students extends Component {
                                             block
                                             className="mb-3"
                                             id="myBtn"
-                                            color="primary"
+                                            color="none"
                                             type="button"
                                             onClick={() => this.toggleModal("defaultModal")}
                                         >
